@@ -6,7 +6,7 @@ server:
 spring:
   datasource:
     password: postgres
-    url: jdbc:postgresql://localhost:5432/registration
+    url: jdbc:postgresql://localhost:5432/infernaltube
     username: postgres
   jpa:
     hibernate:
