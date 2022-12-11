@@ -1,4 +1,4 @@
-package com.Zera57.Application.User;
+package com.Zera57.Application.Account;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
@@ -10,14 +10,18 @@ import java.util.Optional;
 
 @Repository
 @Transactional(readOnly = true)
-public interface UserRepository extends JpaRepository<User, Long> {
+public interface AccountRepository extends JpaRepository<Account, Long> {
 
-    Optional<User> findByEmail(String email);
+    Optional<Account> findByEmail(String email);
 
     @Transactional
     @Modifying
-    @Query("UPDATE User a " +
+    @Query("UPDATE Account a " +
             "SET a.enabled = TRUE WHERE a.email = ?1")
-    int enableUser(String email);
+    int enableAccount(String email);
 
+
+
+//    @Query("SELECT * FROM account WHERE locked = false")
+//    Account findAllAccounts();
 }

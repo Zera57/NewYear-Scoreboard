@@ -1,17 +1,23 @@
 package com.Zera57.Application.Registration.token;
 
-import com.Zera57.Application.User.User;
-import lombok.Getter;
+import com.Zera57.Application.Account.Account;
+import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
 import java.time.LocalDateTime;
 
-@Getter
-@Setter
+@Data
 @NoArgsConstructor
 @Entity
+@Table(name = "confirmation_token")
 public class ConfirmationToken {
     @SequenceGenerator(
             name = "confirmation_token_sequence",
@@ -24,30 +30,22 @@ public class ConfirmationToken {
             generator = "confirmation_token_sequence"
     )
     private Long id;
-
-    @Column(nullable = false)
     private String token;
-
-    @Column(nullable = false)
     private LocalDateTime createdAt;
-
-    @Column(nullable = false)
     private LocalDateTime expiredAt;
-
     private LocalDateTime confirmedAt;
-
     @ManyToOne
     @JoinColumn(
             nullable = false,
             name = "user_id"
     )
-    private User user;
+    private Account account;
 
     public ConfirmationToken(String token, LocalDateTime createdAt,
-                             LocalDateTime expiredAt, User user) {
+                             LocalDateTime expiredAt, Account account) {
         this.token = token;
         this.createdAt = createdAt;
         this.expiredAt = expiredAt;
-        this.user = user;
+        this.account = account;
     }
 }

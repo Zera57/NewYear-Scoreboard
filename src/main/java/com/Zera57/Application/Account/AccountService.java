@@ -1,4 +1,4 @@
-package com.Zera57.Application.User;
+package com.Zera57.Application.Account;
 
 import com.Zera57.Application.Registration.token.ConfirmationToken;
 import com.Zera57.Application.Registration.token.ConfirmationTokenService;
@@ -14,33 +14,33 @@ import java.util.UUID;
 
 @Service
 @AllArgsConstructor
-public class UserService implements UserDetailsService {
+public class AccountService implements UserDetailsService {
 
-    private final static String USER_NOT_FOUND =
+    private final static String ACCOUNT_NOT_FOUND =
             "user with email %s not found";
-    private final UserRepository userRepository;
+    private final AccountRepository accountRepository;
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
     private final ConfirmationTokenService confirmationTokenService;
 
     @Override
     public UserDetails loadUserByUsername(String email)
             throws UsernameNotFoundException {
-        return userRepository.findByEmail(email).orElseThrow(()
-                -> new UsernameNotFoundException(USER_NOT_FOUND));
+        return accountRepository.findByEmail(email).orElseThrow(()
+                -> new UsernameNotFoundException(ACCOUNT_NOT_FOUND));
     }
 
-    public String signUpUser(User user) {
-        boolean userExists = userRepository.findByEmail(user.getEmail()).isPresent();
+    public String signUpAccount(Account newAccount) {
+        boolean accountExists = accountRepository.findByEmail(newAccount.getEmail()).isPresent();
 
-        if (userExists) {
+        if (accountExists) {
             throw new IllegalStateException("email already taken");
         }
 
-        String encodedPassword = bCryptPasswordEncoder.encode(user.getPassword());
+        String encodedPassword = bCryptPasswordEncoder.encode(newAccount.getPassword());
 
-        user.setPassword(encodedPassword);
+        newAccount.setPassword(encodedPassword);
 
-        userRepository.save(user);
+        accountRepository.save(newAccount);
 
         String token = UUID.randomUUID().toString();
 
@@ -48,7 +48,7 @@ public class UserService implements UserDetailsService {
                 token,
                 LocalDateTime.now(),
                 LocalDateTime.now().plusMinutes(15),
-                user
+                newAccount
         );
 
         confirmationTokenService.saveConfirmationToken(confirmationToken);
@@ -57,6 +57,6 @@ public class UserService implements UserDetailsService {
     }
 
     public int enableUser(String email) {
-        return userRepository.enableUser(email);
+        return accountRepository.enableAccount(email);
     }
 }

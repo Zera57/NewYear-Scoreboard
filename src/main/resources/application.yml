@@ -8,14 +8,20 @@ spring:
     password: postgres
     url: jdbc:postgresql://localhost:5432/infernaltube
     username: postgres
+
   jpa:
     hibernate:
-      ddl-auto: create-drop
+      ddl-auto: update
     properties:
       hibernate:
         dialect: org.hibernate.dialect.PostgreSQLDialect
         format_sql: true
     show-sql: true
+
+  flyway:
+    password: postgres
+    url: jdbc:postgresql://localhost:5432/infernaltube
+    user: postgres
 
   mail:
     host: localhost
@@ -34,3 +40,15 @@ spring:
           connectiontimeout: 5000
           timeout: 3000
           writetimeout: 5000
+
+#logging:
+#  level:
+#    org:
+#      springframework:
+#        data:
+#          r2dbc: DEBUG
+
+#logging:
+#  level:
+#    io.r2dbc.postgresql.QUERY: DEBUG # for queries
+#    io.r2dbc.postgresql.PARAM: DEBUG # for parameters

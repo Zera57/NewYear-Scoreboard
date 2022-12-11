@@ -3,9 +3,9 @@ package com.Zera57.Application.Registration;
 import com.Zera57.Application.Email.EmailSender;
 import com.Zera57.Application.Registration.token.ConfirmationToken;
 import com.Zera57.Application.Registration.token.ConfirmationTokenService;
-import com.Zera57.Application.User.User;
-import com.Zera57.Application.User.UserRole;
-import com.Zera57.Application.User.UserService;
+import com.Zera57.Application.Account.Account;
+import com.Zera57.Application.Account.AccountRole;
+import com.Zera57.Application.Account.AccountService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -16,7 +16,7 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 public class RegistrationService {
 
-    private final UserService userService;
+    private final AccountService accountService;
     private final EmailValidator emailValidator;
     private final ConfirmationTokenService confirmationTokenService;
     private final EmailSender emailSender;
@@ -26,13 +26,13 @@ public class RegistrationService {
         if (!isValidEmail) {
             throw new IllegalStateException("email not valid");
         }
-        String token = userService.signUpUser(
-                new User(
+        String token = accountService.signUpAccount(
+                new Account(
                         request.getFirstName(),
                         request.getLastName(),
                         request.getEmail(),
                         request.getPassword(),
-                        UserRole.USER
+                        AccountRole.USER
                 )
         );
         String link = "http://localhost:8080/api/v1/registration/confirm?token=" + token;
@@ -57,8 +57,8 @@ public class RegistrationService {
         }
 
         confirmationTokenService.setConfirmedAt(token);
-        userService.enableUser(
-                confirmationToken.getUser().getEmail());
+        accountService.enableUser(
+                confirmationToken.getAccount().getEmail());
         return "confirmed";
     }
 

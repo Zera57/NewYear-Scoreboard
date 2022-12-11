@@ -1,33 +1,36 @@
-package com.Zera57.Application.User;
+package com.Zera57.Application.Account;
 
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
+import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
 import java.util.Collection;
 import java.util.Collections;
 
-@Getter
-@Setter
-@EqualsAndHashCode
+@Data
 @NoArgsConstructor
 @Entity
-@Table(name="users")
-public class User implements UserDetails {
-    @SequenceGenerator(
-            name = "user_sequence",
-            sequenceName = "user_sequence",
-            allocationSize = 1
-    )
+@Table(name = "account")
+public class Account implements UserDetails {
     @Id
     @GeneratedValue(
             strategy = GenerationType.SEQUENCE,
-            generator = "user_sequence"
+            generator = "account_sequence"
+    )
+    @SequenceGenerator(
+            name = "account_sequence",
+            sequenceName = "account_sequence",
+            allocationSize = 1
     )
     private Long id;
     private String firstName;
@@ -35,26 +38,26 @@ public class User implements UserDetails {
     private String email;
     private String password;
     @Enumerated(EnumType.STRING)
-    private UserRole userRole;
+    private AccountRole accountRole;
     private Boolean locked = false;
     private Boolean enabled = false;
 
-    public User(String firstName,
-                String lastName,
-                String email,
-                String password,
-                UserRole userRole) {
+    public Account(String firstName,
+                   String lastName,
+                   String email,
+                   String password,
+                   AccountRole accountRole) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.password = password;
-        this.userRole = userRole;
+        this.accountRole = accountRole;
     }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         SimpleGrantedAuthority authority =
-                new SimpleGrantedAuthority(userRole.name());
+                new SimpleGrantedAuthority(accountRole.name());
         return Collections.singletonList(authority);
     }
 
