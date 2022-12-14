@@ -7,6 +7,8 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @AllArgsConstructor
 public class AccountService implements UserDetailsService {
@@ -17,14 +19,14 @@ public class AccountService implements UserDetailsService {
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
 
     @Override
-    public UserDetails loadUserByUsername(String email)
+    public UserDetails loadUserByUsername(String name)
             throws UsernameNotFoundException {
-        return accountRepository.findByEmail(email).orElseThrow(()
+        return accountRepository.findByName(name).orElseThrow(()
                 -> new UsernameNotFoundException(ACCOUNT_NOT_FOUND));
     }
 
     public String signUpAccount(Account newAccount) {
-        boolean accountExists = accountRepository.findByEmail(newAccount.getEmail()).isPresent();
+        boolean accountExists = accountRepository.findByName(newAccount.getName()).isPresent();
 
         if (accountExists) {
             throw new IllegalStateException("login already taken");
@@ -37,9 +39,5 @@ public class AccountService implements UserDetailsService {
         accountRepository.save(newAccount);
 
         return "success";
-    }
-
-    public int enableUser(String email) {
-        return accountRepository.enableAccount(email);
     }
 }

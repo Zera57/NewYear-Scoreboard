@@ -6,7 +6,7 @@ server:
 spring:
   datasource:
     password: postgres
-    url: jdbc:postgresql://localhost:5432/infernaltube
+    url: jdbc:postgresql://localhost:5432/scoreboard
     username: postgres
 
   jpa:
@@ -20,7 +20,7 @@ spring:
 
   flyway:
     password: postgres
-    url: jdbc:postgresql://localhost:5432/infernaltube
+    url: jdbc:postgresql://localhost:5432/scoreboard
     user: postgres
 
   mail:
