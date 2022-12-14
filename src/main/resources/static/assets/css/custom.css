@@ -1,0 +1,30 @@
+.gradient {
+  background: linear-gradient(120deg,#3235da,rgb(173,38,220));
+  color: #fff;
+}
+
+.full-screen {
+  height: 100vh!important;
+  padding: 0;
+}
+
+.transparent {
+  background: rgba(0, 0, 0, 0)!important;
+}
+
+.main {
+  padding-top: 5.5rem;
+}
+
+@media (max-width: 991px) {
+  .nav-right  {
+    display: inline-block;
+    text-align: right;
+  }
+}
+
+/* Modal style */
+.modal { color: #000; }
+.modal-body div{float:left; width: 100%}
+.modal-body div p{float:left; width: 20%; font-weight: 600;}
+.modal-body div span{float:left; width: 80%}
