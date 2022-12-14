@@ -1,7 +1,5 @@
 package com.Zera57.Application.Account;
 
-import com.Zera57.Application.Registration.token.ConfirmationToken;
-import com.Zera57.Application.Registration.token.ConfirmationTokenService;
 import lombok.AllArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -9,31 +7,29 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDateTime;
-import java.util.UUID;
+import java.util.List;
 
 @Service
 @AllArgsConstructor
 public class AccountService implements UserDetailsService {
 
     private final static String ACCOUNT_NOT_FOUND =
-            "user with email %s not found";
+            "user with login %s not found";
     private final AccountRepository accountRepository;
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
-    private final ConfirmationTokenService confirmationTokenService;
 
     @Override
-    public UserDetails loadUserByUsername(String email)
+    public UserDetails loadUserByUsername(String name)
             throws UsernameNotFoundException {
-        return accountRepository.findByEmail(email).orElseThrow(()
+        return accountRepository.findByName(name).orElseThrow(()
                 -> new UsernameNotFoundException(ACCOUNT_NOT_FOUND));
     }
 
     public String signUpAccount(Account newAccount) {
-        boolean accountExists = accountRepository.findByEmail(newAccount.getEmail()).isPresent();
+        boolean accountExists = accountRepository.findByName(newAccount.getName()).isPresent();
 
         if (accountExists) {
-            throw new IllegalStateException("email already taken");
+            throw new IllegalStateException("login already taken");
         }
 
         String encodedPassword = bCryptPasswordEncoder.encode(newAccount.getPassword());
@@ -42,21 +38,6 @@ public class AccountService implements UserDetailsService {
 
         accountRepository.save(newAccount);
 
-        String token = UUID.randomUUID().toString();
-
-        ConfirmationToken confirmationToken = new ConfirmationToken(
-                token,
-                LocalDateTime.now(),
-                LocalDateTime.now().plusMinutes(15),
-                newAccount
-        );
-
-        confirmationTokenService.saveConfirmationToken(confirmationToken);
-
-        return token;
-    }
-
-    public int enableUser(String email) {
-        return accountRepository.enableAccount(email);
+        return "success";
     }
 }

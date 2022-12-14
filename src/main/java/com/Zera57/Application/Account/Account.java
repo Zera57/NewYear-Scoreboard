@@ -33,23 +33,15 @@ public class Account implements UserDetails {
             allocationSize = 1
     )
     private Long id;
-    private String firstName;
-    private String lastName;
-    private String email;
+    private String name;
     private String password;
     @Enumerated(EnumType.STRING)
     private AccountRole accountRole;
     private Boolean locked = false;
-    private Boolean enabled = false;
+    private Boolean enabled = true;
 
-    public Account(String firstName,
-                   String lastName,
-                   String email,
-                   String password,
-                   AccountRole accountRole) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.email = email;
+    public Account(String name, String password, AccountRole accountRole) {
+        this.name = name;
         this.password = password;
         this.accountRole = accountRole;
     }
@@ -68,7 +60,7 @@ public class Account implements UserDetails {
 
     @Override
     public String getUsername() {
-        return email;
+        return name;
     }
 
     @Override
