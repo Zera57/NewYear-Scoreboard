@@ -19,7 +19,7 @@
         <div class="container"><a class="navbar-brand logo" href="#">New Year Tournament</a><button data-toggle="collapse" class="navbar-toggler" data-target="#navbarNav"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
             <div class="collapse navbar-collapse nav-right" id="navbarNav">
                 <ul class="navbar-nav ml-auto">
-                    <li class="nav-item"><a class="nav-link active" href="admin.html">Admin</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="index.html">Back to Scoreboard</a></li>
                 </ul>
             </div>
         </div>
@@ -40,6 +40,27 @@
             </div>
         </div>
       </div>
+    </div>
+<!-- Modal -->
+<div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog modal-dialog-centered">
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">User Details</h4>
+        </div>
+        <div class="modal-body">
+          <div class="username"><p>Name: </p><span></span></div>
+          <div class="position"><p>Position: </p><span></span></div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" onclick="addPoint()">Add Point</button>
+          <button type="button" class="btn btn-primary" onclick="removePoint()">Remove Point</button>
+          <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+      
+    </div>
     </div>
     <script src="assets/js/jquery.min.js"></script>
     <script src="assets/bootstrap/js/bootstrap.min.js"></script>
