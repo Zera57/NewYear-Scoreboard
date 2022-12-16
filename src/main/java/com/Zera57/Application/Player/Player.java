@@ -1,5 +1,6 @@
 package com.Zera57.Application.Player;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -25,6 +26,7 @@ public class Player {
             sequenceName = "player_sequence",
             allocationSize = 1
     )
+    @JsonIgnore
     private Long id;
     private String nickname;
     private String name;
