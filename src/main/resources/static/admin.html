@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:300,400,700">
     <link rel="stylesheet" href="assets/fonts/ionicons.min.css">
     <link rel="stylesheet" href="assets/css/Bootstrap-4---Table-Fixed-Header.css">
+    <link rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.21.2/dist/bootstrap-table.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pikaday/1.6.1/css/pikaday.min.css">
     <link rel="stylesheet" href="assets/css/custom.css">
 </head>
@@ -28,61 +29,13 @@
         <div class="row">
             <div class="col-lg-7 mx-auto bg-white rounded shadow">
                 <!-- Fixed header table-->
-                <div class="table-responsive">
-                    <table id="example" class="table table-hover display" style="width:100%">
-                        <thead>
-                          <tr>
-                            <th scope="col">Position</th>
-                            <th scope="col">Nickname</th>
-                            <th scope="col">Name</th>
-                            <th scope="col">Score</th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          <tr>
-                            <th scope="row">1</th>
-                            <td>Zera</td>
-                            <td>Svyat</td>
-                            <td>12</td>
-                          </tr>
-                          <tr>
-                            <th scope="row">2</th>
-                            <td>Pajiloi</td>
-                            <td>Salovat</td>
-                            <td>3</td>
-                          </tr>
-                          <tr>
-                            <th scope="row">3</th>
-                            <td>Jidkii</td>
-                            <td>Egor</td>
-                            <td>2</td>
-                          </tr>
-                          <tr>
-                            <th scope="row">4</th>
-                            <td>Jidkii</td>
-                            <td>Egor</td>
-                            <td>2</td>
-                          </tr>
-                          <tr>
-                            <th scope="row">5</th>
-                            <td>Jidkii</td>
-                            <td>Egor</td>
-                            <td>2</td>
-                          </tr>
-                          <tr>
-                            <th scope="row">6</th>
-                            <td>Jidkii</td>
-                            <td>Egor</td>
-                            <td>2</td>
-                          </tr>
-                          <tr>
-                            <th scope="row">7</th>
-                            <td>Jidkii</td>
-                            <td>Egor</td>
-                            <td>2</td>
-                          </tr>
-                        </tbody>
-                      </table>
+                <div class="table-responsive rounded">
+                    <table
+                      id="table"
+                      class="table table-hover display"
+                      style="width:100%"
+                      data-unique-id="place">
+                    </table>
                 </div>  
             </div>
         </div>
@@ -90,7 +43,7 @@
     </div>
 <!-- Modal -->
 <div class="modal fade" id="myModal" role="dialog">
-    <div class="modal-dialog">
+    <div class="modal-dialog modal-dialog-centered">
       <!-- Modal content-->
       <div class="modal-content">
         <div class="modal-header">
@@ -101,6 +54,8 @@
           <div class="position"><p>Position: </p><span></span></div>
         </div>
         <div class="modal-footer">
+          <button type="button" class="btn btn-primary" onclick="addPoint()">Add Point</button>
+          <button type="button" class="btn btn-primary" onclick="removePoint()">Remove Point</button>
           <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
         </div>
       </div>
@@ -108,12 +63,12 @@
     </div>
     </div>
     <script src="assets/js/jquery.min.js"></script>
-    <script src="assets/js/snowstorm.js"></script>
-    <!-- <script>snowStorm.excludeMobile = false;</script> -->
-    <script src="assets/js/custom.js"></script>
     <script src="assets/bootstrap/js/bootstrap.min.js"></script>
-    <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/pikaday/1.6.1/pikaday.min.js"></script>
+    <script src="https://unpkg.com/bootstrap-table@1.21.2/dist/bootstrap-table.min.js"></script>
+    <script src="https://unpkg.com/bootstrap-table@1.21.2/dist/themes/bootstrap-table/bootstrap-table.min.js"></script>
+    <script src="assets/js/custom.js"></script>
+    <script src="assets/js/snowstorm.js"></script>
+    <script>snowStorm.excludeMobile = false;</script>
     <script src="assets/js/theme.js"></script>
 </body>
 

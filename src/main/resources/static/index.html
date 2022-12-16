@@ -9,9 +9,9 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:300,400,700">
     <link rel="stylesheet" href="assets/fonts/ionicons.min.css">
     <link rel="stylesheet" href="assets/css/Bootstrap-4---Table-Fixed-Header.css">
+    <link rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.21.2/dist/bootstrap-table.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pikaday/1.6.1/css/pikaday.min.css">
     <link rel="stylesheet" href="assets/css/custom.css">
-    <script type="text/javascript" src="snowstorm.js"></script>
 </head>
 
 <body class="gradient full-screen">
@@ -19,57 +19,35 @@
         <div class="container"><a class="navbar-brand logo" href="#">New Year Tournament</a><button data-toggle="collapse" class="navbar-toggler" data-target="#navbarNav"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
             <div class="collapse navbar-collapse nav-right" id="navbarNav">
                 <ul class="navbar-nav ml-auto">
-                    <li class="nav-item"><a class="nav-link active" href="admin.html">Admin Menu</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="admin.html">Admin</a></li>
                 </ul>
             </div>
         </div>
     </nav>
     <div class="main">
-        <div class="container py-5">
-          <div class="row">
-              <div class="col-lg-7 mx-auto bg-white rounded shadow">
-                  <!-- Fixed header table-->
-                  <div class="table-responsive">
-                      <table id="example" class="table display" style="width:100%">
-                          <thead>
-                            <tr>
-                              <th scope="col">Position</th>
-                              <th scope="col">Nickname</th>
-                              <th scope="col">Name</th>
-                              <th scope="col">Score</th>
-                            </tr>
-                          </thead>
-                          <tbody>
-                            <tr>
-                              <th scope="row">1</th>
-                              <td>Zera</td>
-                              <td>Svyat</td>
-                              <td>12</td>
-                            </tr>
-                            <tr>
-                              <th scope="row">2</th>
-                              <td>Pajiloi</td>
-                              <td>Salovat</td>
-                              <td>3</td>
-                            </tr>
-                            <tr>
-                              <th scope="row">3</th>
-                              <td>Jidkii</td>
-                              <td>Egor</td>
-                              <td>2</td>
-                            </tr>
-                          </tbody>
-                        </table>
-                  </div>  
-              </div>
-          </div>
+      <div class="container py-5">
+        <div class="row">
+            <div class="col-lg-7 mx-auto bg-white rounded shadow">
+                <!-- Fixed header table-->
+                <div class="table-responsive rounded">
+                    <table
+                      id="table"
+                      class="table table-hover display"
+                      style="width:100%"
+                      data-unique-id="place">
+                    </table>
+                </div>  
+            </div>
         </div>
       </div>
+    </div>
     <script src="assets/js/jquery.min.js"></script>
-    <script src="assets/js/snowstorm.js"></script>
-    <!-- <script>snowStorm.excludeMobile = false;</script> -->
     <script src="assets/bootstrap/js/bootstrap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/pikaday/1.6.1/pikaday.min.js"></script>
+    <script src="https://unpkg.com/bootstrap-table@1.21.2/dist/bootstrap-table.min.js"></script>
+    <script src="https://unpkg.com/bootstrap-table@1.21.2/dist/themes/bootstrap-table/bootstrap-table.min.js"></script>
+    <script src="assets/js/custom.js"></script>
+    <script src="assets/js/snowstorm.js"></script>
+    <script>snowStorm.excludeMobile = false;</script>
     <script src="assets/js/theme.js"></script>
 </body>
 

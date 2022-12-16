@@ -24,7 +24,8 @@
 }
 
 /* Modal style */
-.modal { color: #000; }
+.modal { color: #000;}
+/* .modal-dialog {min-width: 350px;} */
 .modal-body div{float:left; width: 100%}
 .modal-body div p{float:left; width: 20%; font-weight: 600;}
 .modal-body div span{float:left; width: 80%}
