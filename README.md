@@ -1,4 +1,4 @@
-# NewYear Scoreboard
+# NewYear Scoreboard 🎉
 This Project was maded for fun. And will be used in our winter tournament.
 
 Backend:
