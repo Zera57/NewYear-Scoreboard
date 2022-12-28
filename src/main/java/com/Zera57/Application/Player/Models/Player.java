@@ -1,4 +1,4 @@
-package com.Zera57.Application.Player;
+package com.Zera57.Application.Player.Models;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;

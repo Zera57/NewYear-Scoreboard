@@ -1,5 +1,7 @@
 package com.Zera57.Application.Player;
 
+import com.Zera57.Application.Player.Models.AddPointRq;
+import com.Zera57.Application.Player.Models.Player;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -27,8 +29,8 @@ public class PlayerController {
     }
 
     @PostMapping("/addPoint")
-    public Player addPoint(@RequestBody String name) {
-        return playerService.addPoint(name);
+    public Player addPoint(@RequestBody AddPointRq rq) {
+        return playerService.addPoint(rq.getName(), rq.getPoints());
     }
 
     @PostMapping("/removePoint")

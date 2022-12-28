@@ -1,6 +1,7 @@
 package com.Zera57.Application.Player;
 
 import com.Zera57.Application.Account.AccountService;
+import com.Zera57.Application.Player.Models.Player;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -24,6 +25,7 @@ public class PlayerServiceImpl implements PlayerService {
     @Override
     public Collection<Player> getAll() {
         return playerRepository.findAll().stream()
+                .sorted(Comparator.comparing(Player::getName))
                 .sorted(Comparator.comparingInt(Player::getScore).reversed())
                 .collect(Collectors.toList());
     }
@@ -35,8 +37,8 @@ public class PlayerServiceImpl implements PlayerService {
     }
 
     @Override
-    public Player addPoint(String name) {
-        playerRepository.addPoint(name);
+    public Player addPoint(String name, int points) {
+        playerRepository.addPoint(name, points);
         return getPlayer(name);
     }
 
