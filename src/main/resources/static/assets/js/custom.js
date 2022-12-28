@@ -63,14 +63,15 @@ getAllPlayers();
 function addPoint() {
     var username = $(".username span")[0].textContent
     var requestAddPoint = window.location.origin + "/player/addPoint";
-    console.log(username)
+    var data = JSON.stringify({"name": username, "points": "1"});
+    console.log(data)
     fetch(requestAddPoint, {
         method: 'POST',
         headers: {
             'Accept': 'application/json',
-            'Content-Type': 'plain/text'
+            'Content-Type': 'application/json'
         },
-        body: username
+        body: data
     })
     .then(response => response.json())
     .then(response => {
@@ -79,6 +80,28 @@ function addPoint() {
         $(".position span").text(response.score);
         setTimeout(reloadTable(), 1000);
     })
+}
+
+function addFivePoints() {
+    var username = $(".username span")[0].textContent
+    var requestAddPoint = window.location.origin + "/player/addPoint";
+    var data = JSON.stringify({"name": username, "points": "5"});
+    console.log(data)
+    fetch(requestAddPoint, {
+        method: 'POST',
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        },
+        body: data
+    })
+        .then(response => response.json())
+        .then(response => {
+            console.log(JSON.stringify(response))
+            $(".username span").text(response.name);
+            $(".position span").text(response.score);
+            setTimeout(reloadTable(), 1000);
+        })
 }
 
 // Remove point
