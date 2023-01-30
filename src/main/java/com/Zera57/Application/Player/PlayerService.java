@@ -1,13 +1,14 @@
 package com.Zera57.Application.Player;
 
-import java.util.Collection;
+import com.Zera57.Application.Player.Models.Player;
+import java.util.List;
 
 public interface PlayerService {
 
-    public Player getPlayer(String name);
-    Collection<Player> getAll();
+    public Player getPlayer(String name, String nickname);
+    List<Player> getAll();
     public Player addPlayer(Player player);
-    public Player addPoint(String name);
-    public Player removePoint(String name);
-
+    public Player addPoint(String name, String nickname, int points);
+    public Player removePoint(String name, String nickname, int points);
+    Player getRandomPlayer();
 }
