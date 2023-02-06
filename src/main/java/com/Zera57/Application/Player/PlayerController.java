@@ -1,6 +1,6 @@
 package com.Zera57.Application.Player;
 
-import com.Zera57.Application.Player.Models.AddPointRq;
+import com.Zera57.Application.Player.Models.ChangePointsRq;
 import com.Zera57.Application.Player.Models.Player;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,8 +19,8 @@ public class PlayerController {
     PlayerService playerService;
 
     @GetMapping
-    public Player getPlayer(@RequestParam String name) {
-        return playerService.getPlayer(name);
+    public Player getPlayer(@RequestParam String name, @RequestParam String nickname) {
+        return playerService.getPlayer(name, nickname);
     }
 
     @GetMapping("/all")
@@ -29,12 +29,17 @@ public class PlayerController {
     }
 
     @PostMapping("/addPoint")
-    public Player addPoint(@RequestBody AddPointRq rq) {
-        return playerService.addPoint(rq.getName(), rq.getPoints());
+    public Player addPoint(@RequestBody ChangePointsRq rq) {
+        return playerService.addPoint(rq.getName(), rq.getNickname(), rq.getPoints());
     }
 
     @PostMapping("/removePoint")
-    public Player removePoint(@RequestBody String name) {
-        return playerService.removePoint(name);
+    public Player removePoint(@RequestBody ChangePointsRq rq) {
+        return playerService.removePoint(rq.getName(), rq.getNickname(), rq.getPoints());
+    }
+
+    @GetMapping("/random")
+    public Player getRandomPlayer() {
+        return playerService.getRandomPlayer();
     }
 }

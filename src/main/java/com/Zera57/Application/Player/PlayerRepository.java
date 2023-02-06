@@ -12,15 +12,12 @@ import java.util.Optional;
 @Repository
 public interface PlayerRepository extends JpaRepository<Player, Long> {
 
-    Optional<Player> findByName(String name);
+    @Transactional
+    @Query("select p from Player p where p.name = ?1 and p.nickname = ?2")
+    Optional<Player> findByName(String name, String nickName);
 
     @Transactional
     @Modifying
-    @Query("update Player p set p.score = p.score + ?2 where p.name = ?1")
-    void addPoint(String name, int points);
-
-    @Transactional
-    @Modifying
-    @Query("update Player p set p.score = p.score - 1 where p.name = ?1")
-    void removePoint(String name);
+    @Query("update Player p set p.score = p.score + ?3 where p.name = ?1 and p.nickname = ?2")
+    void addPoint(String name, String nickname, int points);
 }
